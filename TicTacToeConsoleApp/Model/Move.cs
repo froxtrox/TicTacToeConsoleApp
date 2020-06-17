@@ -5,8 +5,8 @@ namespace TicTacToeConsoleApp.Model
     public class Move
     {
 
-        internal int Row { get; set; }
-        internal int Column { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
 
         //initialize a position with 0-based row and collumn.
         public Move(int row, int collumn)
