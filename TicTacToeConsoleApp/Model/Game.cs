@@ -34,6 +34,8 @@ namespace TicTacToeConsoleApp.Model
             //diagonal and reverseDiagonal
             var diagonalCounter = new int[2];
 
+            //Iterate through the entire board and update the counters, it will either add 1 if the move is played by the first player
+            // or -1 if played by the second player, Any members in each counter array that reaches 3 will therefore result in 3 moves connection and wins.
             for (int i = 0; i < Dimension; i++)
             {
                 for (int j = 0; j < Dimension; j++)
