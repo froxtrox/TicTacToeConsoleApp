@@ -5,7 +5,6 @@ using TicTacToeConsoleApp.Model;
 
 namespace TicTacToeConsoleApp
 {
-    //Handle console input and data validation using board 
     public class ConsoleGamePlayer
     {
         private Game _game = new Game();
@@ -29,13 +28,13 @@ namespace TicTacToeConsoleApp
                 }
                 catch (InvalidOperationException ex)
                 {
-                    Console.WriteLine($"{ex.Message}, Press enter to continue.");
+                    Console.WriteLine($"{ex.Message}, Press any keys to continue.");
                     Console.ReadKey();
                     continue;
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    Console.WriteLine($"{ex.ParamName} Press enter to continue.");
+                    Console.WriteLine($"{ex.ParamName} Press any keys to continue.");
                     Console.ReadKey();
                     continue;
                 }
