@@ -2,7 +2,7 @@
 namespace TicTacToeConsoleApp.Model
 
 {
-    public class Move
+    public struct Move
     {
 
         public int Row { get; set; }
@@ -18,14 +18,14 @@ namespace TicTacToeConsoleApp.Model
 
         private void Validate()
         {
-            if (Row >= Board.Dimension || Row < 0)
+            if (Row < 0 || Row >= Board.Dimension)
             {
-                throw new ArgumentOutOfRangeException($"Row input is outside of the board. Only 1 to {Board.Dimension} are allowed!");
+                throw new ArgumentOutOfRangeException(nameof(Row), $"Row should be within 0 and {Board.Dimension - 1}.");
             }
 
-            if (Column >= Board.Dimension || Column < 0)
+            if (Column < 0 || Column >= Board.Dimension)
             {
-                throw new ArgumentOutOfRangeException($"Column input is outside of the board. Only 1 to {Board.Dimension} are allowed!");
+                throw new ArgumentOutOfRangeException(nameof(Column), $"Column should be within 0 and {Board.Dimension - 1}.");
             }
         }
     }

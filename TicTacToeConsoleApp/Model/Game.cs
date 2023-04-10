@@ -8,10 +8,10 @@ namespace TicTacToeConsoleApp.Model
     public class Game
     {
 
-        List<Move> Moves = new List<Move>();
+        private readonly List<Move> _moves = new List<Move>();
         public Board Board { get; set; } = new Board();
 
-        int NumberMovesPlayed => Moves.Count();
+        int NumberMovesPlayed => _moves.Count();
         int Dimension => Board.Dimension;
 
         public bool isFirstPlayerTurnToPlay => NumberMovesPlayed % 2 == 0 ? true : false;
@@ -19,11 +19,29 @@ namespace TicTacToeConsoleApp.Model
 
         public void Move(Move move)
         {
-            if (Board.BoardData[move.Row, move.Column] != '-')
+            if (Board.GetBoardData(move.Row, move.Column) != '-')
                 throw new InvalidOperationException("This position has already been placed.");
             //Update board state
-            Moves.Add(move);
-            Board.BoardData[move.Row, move.Column] = isFirstPlayerTurnToPlay ? 'O' : 'X';
+            _moves.Add(move);
+            Board.UpdateBoardData(move.Row, move.Column, isFirstPlayerTurnToPlay ? 'O' : 'X');
+        }
+        public List<string> GetRows()
+        {
+            var rows = new List<string>();
+
+            for (int i = 0; i < Dimension; i++)
+            {
+                var row = new StringBuilder();
+
+                for (int j = 0; j < Dimension; j++)
+                {
+                    row.Append(Board.GetBoardData(i, j));
+                }
+
+                rows.Add(row.ToString());
+            }
+
+            return rows;
         }
 
         public Result CheckResult()
@@ -40,11 +58,11 @@ namespace TicTacToeConsoleApp.Model
             {
                 for (int j = 0; j < Dimension; j++)
                 {
-                    var value = Board.BoardData[i, j];
+                    var value = Board.GetBoardData(i,j);
 
                     if (value == '-') { continue; }
 
-                    var addedValue = Board.BoardData[i, j] == 'X' ? 1 : -1;
+                    var addedValue = Board.GetBoardData(i, j) == 'X' ? 1 : -1;
 
                     rowsCounter[i] += addedValue;
                     colsCounter[j] += addedValue;
@@ -84,7 +102,7 @@ namespace TicTacToeConsoleApp.Model
                 var sb = new StringBuilder();
                 for (int j = 0; j < Board.Dimension; j++)
                 {
-                    sb.Append(Board.BoardData[i, j]);
+                    sb.Append(Board.GetBoardData(i, j));
                 }
                 dataCollection.Add(sb.ToString());
             }
