@@ -7,7 +7,7 @@ namespace TicTacToeConsoleApp
         static void Main(string[] args)
         {
 
-            new ConsoleGamePlayer().Initialise();
+            new GameSession().Initialise();
         }
     }
 }

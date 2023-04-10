@@ -5,7 +5,7 @@ using TicTacToeConsoleApp.Model;
 
 namespace TicTacToeConsoleApp
 {
-    public class ConsoleGamePlayer
+    public class GameSession
     {
         private Game _game = new Game();
         public void Initialise()
